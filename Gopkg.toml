@@ -24,6 +24,9 @@
 #   go-tests = true
 #   unused-packages = true
 
+[[constraint]]
+  name = "github.com/emersion/go-imap"
+  branch = "v1"
 
 [prune]
   go-tests = true

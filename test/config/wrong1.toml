@@ -1,0 +1,6 @@
+# Here's no base entry
+
+[accounts]
+    # And an invalid account
+    [accounts.example]
+        server = true

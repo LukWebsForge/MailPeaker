@@ -1,0 +1,18 @@
+[base]
+    # The outbound Smtp server
+    server = "smtp.example.com"
+    port = 587
+    email = "hey@example.com"
+    password = "123456"
+    # Use a path to use a custom template
+    # template = "./templates/custom.template"
+    template = "en"
+    interval = 300
+
+[accounts]
+    [accounts.example]
+        # The Imap server
+        server = "imap.example.com"
+        port = 993
+        email = "hey@example.com"
+        password = "123456"

@@ -1,0 +1,24 @@
+[base]
+    # The outbound Smtp server
+    server = "smtp.example.com"
+    port = 587
+    email = "hey@example.com"
+    password = "123456"
+    # Use a path to use a custom template
+    # template = "./templates/custom.template"
+    template = "en"
+    dev = true
+    # The interval how often the peaker should check the mails (in seconds)
+    interval = 300 # 60 * 5 => 5 Minutes
+
+[accounts]
+    [accounts.example]
+        # The Imap server
+        server = "imap.example.com"
+        port = 993
+        email = "hey@example.com"
+        password = "123456"
+        # Optional, default INBOX
+        mailboxes = ["INBOX", "2. INBOX"]
+        # Template to override (Optional)
+        template = "de"
