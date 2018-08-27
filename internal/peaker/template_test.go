@@ -23,7 +23,7 @@ func TestFindTemplate(t *testing.T) {
 
 	// External files
 
-	template, err := FindTemplate("../test/template/correct.txt.tmpl")
+	template, err := FindTemplate("../../test/template/correct.txt.tmpl")
 	assert.NoError(err)
 
 	buffer := bytes.NewBufferString("")
@@ -36,7 +36,7 @@ func TestFindTemplate(t *testing.T) {
 	assert.NoError(err)
 	assert.Equal(wantedText, strings.Replace(buffer.String(), "\r", "", -1))
 
-	_, err = FindTemplate("../test/template/wrong.txt.tmpl")
+	_, err = FindTemplate("../../test/template/wrong.txt.tmpl")
 	assert.Error(err)
 
 	_, err = FindTemplate("./coolItDoesntExists")

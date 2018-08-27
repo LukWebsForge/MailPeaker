@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"lukweb.de/mailPeaker/peaker"
+	"lukweb.de/mail/peaker/internal/peaker"
 	_ "net/smtp"
 	"time"
 )
@@ -16,6 +16,8 @@ func main() {
 		panic(err)
 	}
 	config = localConfig
+
+	// peaker.ReadMails(config.In[0].Server)
 
 	if config.Dev {
 		log.Println("Dev mode is enabled => instant run")

@@ -5,6 +5,7 @@ import (
 	"github.com/pelletier/go-toml"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 	"strings"
 	"time"
 )
@@ -26,7 +27,7 @@ type AccountConfig struct {
 type Config struct {
 	Out      *ServerConfig
 	Template string
-	In       []AccountConfig
+	In       []*AccountConfig
 	Dev      bool
 	Interval time.Duration
 }
@@ -100,7 +101,7 @@ func findConfigFile() (string, error) {
 
 func parseConfig(filePath string) (*Config, error) {
 	// The config file exists (now), so we'll read it
-	tree, err := toml.LoadFile(filePath)
+	tree, err := toml.LoadFile(filepath.FromSlash(filePath))
 	if err != nil {
 		return nil, fmt.Errorf("can't parse the config file '%s': %v", filePath, err)
 	}
@@ -131,8 +132,8 @@ func parseConfig(filePath string) (*Config, error) {
 	return &config, nil
 }
 
-func parseConfigAccounts(tree *toml.Tree, defaultTemplate string) ([]AccountConfig, error) {
-	configs := make([]AccountConfig, len(tree.Keys()))
+func parseConfigAccounts(tree *toml.Tree, defaultTemplate string) ([]*AccountConfig, error) {
+	configs := make([]*AccountConfig, len(tree.Keys()))
 
 	for index, key := range tree.Keys() {
 		element := tree.Get(key).(*toml.Tree)
@@ -152,7 +153,7 @@ func parseConfigAccounts(tree *toml.Tree, defaultTemplate string) ([]AccountConf
 			Mailboxes: parseMailboxes(element),
 		}
 
-		configs[index] = config
+		configs[index] = &config
 	}
 
 	return configs, nil
